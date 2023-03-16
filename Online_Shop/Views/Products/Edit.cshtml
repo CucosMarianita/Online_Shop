@@ -1,0 +1,99 @@
+﻿
+@model Online_Shop.Models.Product
+
+<h2 class="text-center mt-5">Editare produs</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            
+             @using (Html.BeginForm(actionName: "Edit", controllerName: "Products", 
+                    method: FormMethod.Post, 
+                    routeValues:new { id = Model.Id }))
+             {
+                @*@Html.HiddenFor(m => m.Id)*@
+
+                @Html.Label("Title", "Titlu produs")
+                <br />
+                @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                <br /><br />
+
+
+                @Html.Label("Content", "Descriere produs")
+                <br />
+                @Html.Editor("Content", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+                <br /><br />
+
+
+                @Html.Label("Price", "Pret produs")
+                <br />
+                @Html.Editor("Price", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Price, null, new { @class = "text-danger" })
+                <br /><br />
+               
+
+                <label>Selectati categoria</label>
+                @Html.DropDownListFor(m => m.CategoryId,
+                     new SelectList(Model.Categ, "Value", "Text"),
+                     "Selectati categoria", new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+                <br />
+                <br />
+                <button class="btn btn-sm btn-success" type="submit">Modifica produs</button>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*
+<form method="post" action="/Products/Edit/@ViewBag.Product.Id">
+
+    <label>Denumire produs</label>
+    <input type="text" name="Title" value="@ViewBag.Product.Title" />
+    <br /><br />
+
+    <label>Descriere produs</label>
+    <input type="text" name="Content" value="@ViewBag.Product.Content" />
+    <br /><br />
+
+    <label>Pret produs</label>
+    <input type="text" name="Price" value="@ViewBag.Product.Price" />
+    <br />
+
+
+    <select name="CategoryId">
+
+        @foreach (var category in ViewBag.Categories)
+        {
+            if (category.Id == ViewBag.Category.Id)
+            {
+                <option selected="selected" value="@category.Id">@category.CategoryName</option>
+            }
+            else
+            {
+                <option value="@category.Id">
+                    @category.CategoryName
+                </option>
+            }
+        }
+
+    </select>
+
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Modifica produs</button>
+
+</form>
+*@

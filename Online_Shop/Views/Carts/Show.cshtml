@@ -1,0 +1,53 @@
+﻿@model Online_Shop.Models.Cart
+
+
+
+
+    <div class="col-12">
+        <h5 class="card-title" name="Name">Cos de cumparaturi</h5>
+        @*@if (ViewBag.EsteAdmin)
+        {
+            <i class="bi bi-person"> Creat de: </i> @Model.User.UserName
+
+        }*@
+
+        <br />
+ 
+        <br /><br />
+    </div>
+
+<div class="row">
+    
+    @if (Model.ProductCarts.Count > 0)
+        @foreach (var productCart in Model.ProductCarts)
+        {
+            <div class="col-4 mb-4">
+                
+                    @*<img src="..." class="card-img-top" alt="..."> *@
+
+                    <div class="card-body">
+
+                        @Html.Partial("ProductInfo", productCart.Product)
+
+                    </div>
+            </div>
+
+               
+           
+        }
+
+       
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

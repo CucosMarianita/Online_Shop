@@ -1,0 +1,27 @@
+﻿@model Online_Shop.Models.Product
+
+@{
+    ViewBag.Title = "Validare produs";
+}
+
+<br/>
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm(controllerName: "Checks", actionName: "Edit", method: FormMethod.Post,
+     routeValues: new { id = Model.Id }))
+{
+    @Html.Label("Check", "Acceptare produs")
+    <br />
+    <div>
+        @Html.RadioButtonFor(m => m.Check,"true", new { @class="radio-inline"})
+        True
+        @Html.RadioButtonFor(m => m.Check,"false", new { @class="radio-inline"})
+        False
+        
+    </div>
+    <br />
+
+    <button class="btn btn-success" type="submit">Modifica</button>
+}

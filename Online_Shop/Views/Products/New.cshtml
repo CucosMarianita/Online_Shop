@@ -1,0 +1,87 @@
+﻿@model Online_Shop.Models.Product
+
+<h2 class="text-center mt-5">Adaugare produs</h2>
+<br />
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            @*<form enctype="multipart/form-data" asp-controller="Products" asp-action="New">
+                <input class="form-control" placeholder="Article Name" type="text" name="Title" />
+                <br />
+
+                <textarea class="form-control" placeholder="Article Content" style="width: 100%; height: 100px;" name="Content"></textarea>
+                <br />
+
+
+                <input class="form-control" type="file" name="ArticleImage" />
+                <br />
+
+                <input class="btn btn-success" type="submit" value="Upload" />
+            </form>*@
+
+           
+            @using (Html.BeginForm(actionName: "New", controllerName: "Products",
+            method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                // toate erorile
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                @Html.Label("Title", "Titlu produs")
+                <br />
+                @Html.TextBox("Title", null, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                <br /><br />
+
+
+                @Html.Label("Content", "Descriere produs")
+                <br />
+                @Html.TextArea("Content", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+                <br /><br />
+
+
+                @Html.Label("Price", "Pret produs")
+                <br />
+                //@Html.TextBox("Price", null, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Price, null , new { @class = "text-danger" })
+                <br /><br />
+
+                @Html.TextBoxFor(m => m.Image, new { type = "file",  @class = "form-control"  })
+                @*<input class="form-control" type="file" name="ArticleImage" />*@
+                <br />
+                <br />
+
+
+                <label>Selectati categoria</label>
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value", "Text"),
+                    "Selectati categoria", new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+                <br />
+                <br />
+
+                <button class="btn btn-success" type="submit">Adauga produs</button>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

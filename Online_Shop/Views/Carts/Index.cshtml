@@ -1,0 +1,42 @@
+﻿<br />
+<br />
+
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<br />
+
+@*<a class="btn btn-success rounded-pill mb-5" href="/Bookmarks/New">
+    <i class="bi bi-plus"></i> Adaugare bookmark
+</a>*@
+
+
+<div class="row">
+    
+    @foreach (var cart in ViewBag.Carts)
+    {
+        <div class="col-4 mb-4">
+            <div class="card" style="width: 100%;">
+                @*<img src="..." class="card-img-top" alt="..."> *@
+                
+                <div class="card-body" style="background-color:floralwhite">
+
+                    <h5 class="card-title" name="Name">Cos de cumparaturi</h5>
+
+                    @*@if (ViewBag.EsteAdmin)
+                    {
+                        <div><i class="bi bi-person"> Creat de: </i> @bookmark.User.UserName</div>
+                    }*@
+
+                    <br />
+
+                    <a class="btn alert-success" href="/Carts/Show/@cart.Id">Afisare Cos</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

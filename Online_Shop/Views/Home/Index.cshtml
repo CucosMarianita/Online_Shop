@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<br />
+
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search products or keywords" name="search" style="background-color:floralwhite; border-color: hotpink; border-width: 2px; box-shadow:0 0 15px 4px #D5C1BB;"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit" style=" color: deeppink; background-color: floralwhite; border-radius: 8px; border: 2px solid hotpink">Search</button>
+    </div>
+</form>
+
+
+@*SORTARE*@
+
+<div class="card d-flex" style="background-color:floralwhite">
+    <strong style="text-align: center">Sorteaza: </strong>
+    <div class=" justify-content-evenly" style="text-align: center;">
+
+        @Html.ActionLink("Price","Index", new {sortBy = ViewBag.SortPriceParam})
+        @Html.ActionLink("Rating","Index", new {sortBy = ViewBag.SortRatingParam})
+    </div>
+</div>
+
+<br />
+
+@*<div class="row">
+    <div class="col-12">
+        <div class="bg-light rounded-3 p-5 mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="font-roboto display-5 fw-bold">@Html.Raw(ViewBag.FirstProduct.Title)</h1>
+                    <div class="font-montserrat mb-3 truncate">@Html.Raw(ViewBag.FirstProduct.Content)</div>
+                    <a href="/Articles/Show/@ViewBag.FirstProduct.Id" class="btn btn-outline-success">Vezi produsul</a>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://icon-library.com/images/newspaper-png-icon/newspaper-png-icon-15.jpg" class="img-fluid align-items-center justify-content-center" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+<div class="row">
+    @foreach (Online_Shop.Models.Product product in ViewBag.Products)
+    {
+        @if (product.Check == true)
+        {
+            <div class="card" style=" background-color:burlywood; width:400px; height:803px; margin:10px; align-items:center; align-self: center">
+
+                <div class="card" style="width: 25rem; background-color:floralwhite">
+
+                    <img class="card-img-top" src="@product.Image" width="450" height="600">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Title</h5>
+                        <div class="card-text">@product.Content</div>
+                        <div><i class="bi bi-list-columns"></i> @product.Category.CategoryName</div>
+
+                        <div><i class="bi bi-person-vcard-fill"></i> @product.User.UserName</div>
+
+
+                        <span class="bi bi-tag">@product.Price</span>
+
+                    </div>
+                </div>
+
+                <a class="btn" style="width:400px" href="/Home/Show/@product.Id">Afisare produs</a>
+
+            </div>
+        }
+    }
+</div>
+
+
+
+@* Afisarea paginata a produselor *@
+
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationHome=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item"> <a class="page-link" href="@ViewBag.PaginationHome=@i">@(i)</a> </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationHome=@(ViewBag.lastPage)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+

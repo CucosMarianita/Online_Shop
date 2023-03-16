@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+    font-family: 'Courier New'; 
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: papayawhip;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.navbar {
+    background-color: #ed9393 !important;
+    /*border: dashed #ffe4e1 !important;*/
+    box-shadow: 0 3px 15px #f8a5c2 !important;
+}
+
+a.nav-link {
+    color: #596275 !important;
+}
+
+    a.nav-link:hover {
+        color: #596275 !important;
+    }
+
+.logoutbtn {
+    color: #596275 !important;
+}
+
+.logoutbtn:hover {
+   color: #596275 !important;
+    }
+
